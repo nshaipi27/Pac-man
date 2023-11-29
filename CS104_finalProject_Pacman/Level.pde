@@ -15,6 +15,16 @@ class Level{
     count++;
     //add
   }
+  void movePlayerUp(){
+    //if(){
+    }
+  }
+  void movePlayerDown(){
+  }
+  void movePlayerLeft(){
+  }
+  void movePlayerRight(){
+  }
 
   boolean levelCompleted(){
     boolean levelCompleted = true;
