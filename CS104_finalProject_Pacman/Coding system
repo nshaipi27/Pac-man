@@ -1,0 +1,6 @@
+//coding system:
+//cell is empty : 0
+//cell has wall : 1
+//cell has pacman : 2
+//cell has ghost : 3
+//cell has dot : 4
