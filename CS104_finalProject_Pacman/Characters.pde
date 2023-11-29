@@ -4,21 +4,14 @@ class Characters {
   float y;
   float speed; // Movement speed
   int size; // Size of the character
-  color characterColor; // Color of the character
 
-  Characters(float x, float y, float speed, int size, color characterColor) {
+  Characters(float x, float y, float speed, int size) {
     this.x = x;
     this.y = y;
     this.speed = speed;
     this.size = size;
-    this.characterColor = characterColor;
   }
 
-  void display() {
-    // Display the character 
-    fill(characterColor);
-    ellipse(x, y, size, size);
-  }
 
   void moveUp() {
     y -= speed;
