@@ -2,8 +2,8 @@
 class Pacman extends Characters{
   PImage pacmanImage; // whichever image we find of Pacman
   
-  Pacman(float x, float y, float speed, int size, color characterColor, PImage img) {
-    super(x, y, speed, size, characterColor);
+  Pacman(float x, float y, float speed, int size, PImage img) {
+    super(x, y, speed, size);
     pacmanImage = img;
   }
   
