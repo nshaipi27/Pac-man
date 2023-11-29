@@ -2,6 +2,7 @@
 class Level{
   private int playerPosition;    
   private int ghostSpeed;
+//instance variables to  
   private int score = 0
   private boolean gameOver = false;
 
