@@ -20,6 +20,20 @@ void draw () {
   text("High Score:" + " " + highScore, 420, 50); 
 }
 
+void keyPressed(){
+  if(keyPressed == UP){
+
+  }
+  if(keyPressed == DOWN){
+
+  }
+  if(keyPressed == LEFT){
+
+  }
+  if(keyPressed == RIGHT){
+
+  }
+}
 
 //coding system:
 //cell is empty : 0
