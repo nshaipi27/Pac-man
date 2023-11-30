@@ -2,12 +2,19 @@ int [][] grid1 = new int [28][30];
 int [][] grid2;
 int [][] grid3;
 
+Level L1;
+Level L2; 
+Level L3; 
+
 Characters test;
 Maze testMaze;
 void setup() {
   size(700, 680);
   test = new Characters(100, 100, 0.5, 20);
   testMaze = new Maze();
+  L1.//first maze
+  L2.//second maze
+  L3.//third maze
 }
 
 void draw () {
