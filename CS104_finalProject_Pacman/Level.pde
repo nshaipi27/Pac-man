@@ -4,7 +4,7 @@ class Level{
   private int playerPositionY = 0;
   private int playerPosititonX = 0;
   private int ghostSpeed;
-  private int score = 0
+  private int score = 0;
   private boolean gameOver = false;
 
 //class constructor
