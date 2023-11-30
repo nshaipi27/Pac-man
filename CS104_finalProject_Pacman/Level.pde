@@ -1,11 +1,13 @@
 // logic to more easily manipulate the levels and how they operate
 class Level{
-  private int playerPosition;    
+//instance variables
+  private int playerPositionY = 0;
+  private int playerPosititonX = 0;
   private int ghostSpeed;
-//instance variables to  
   private int score = 0
   private boolean gameOver = false;
 
+//class constructor
   Level(int ghostSpeed){
     this.ghostSpeed = ghostSpeed;
   }
@@ -14,25 +16,48 @@ class Level{
 
   void update(){
     count++;
-    //add
-  }
-  void movePlayerUp(){
-    //if(){
-    }
-  }
-  void movePlayerDown(){
-  }
-  void movePlayerLeft(){
-  }
-  void movePlayerRight(){
+    //add code
   }
 
+  void movePlayerUp(){
+    playerPositionY -= 1;
+    if(playerPositionY == //wall){
+      levelFailed();
+    }
+  }
+
+  void movePlayerDown(){
+    playerPositionY += 1;
+    if(playerPosition == //wall){
+      levelFailed();
+    }
+  }
+  void movePlayerLeft(){
+    playerPositionX -= 1;
+    if(playerPositionX == //wall){
+      levelFailed();
+    }
+  }
+  void movePlayerRight(){
+    playerPositionX += 1;
+    if(playerPositionX == //wall){
+      levelFailed();
+    }
+  }
+
+//render function
+  void render(){
+  }
+
+//local variable for level completed
   boolean levelCompleted(){
     boolean levelCompleted = true;
     for(int i = 0; i < ; i++){
-
+//add code
     }
   }
+
+//local variable for level failed
   boolean levelFailed(){
     if(gameOver == true){
       return true;
