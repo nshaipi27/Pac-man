@@ -15,6 +15,9 @@ void draw () {
   testMaze.render1();
   test.render();
   test.update();
+  textSize(40);
+  text("Score:" + " " + score, 40, 50);
+  text("High Score:" + " " + highScore, 420, 50); 
 }
 
 
