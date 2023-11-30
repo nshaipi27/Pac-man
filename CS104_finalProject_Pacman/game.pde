@@ -22,16 +22,16 @@ void draw () {
 
 void keyPressed(){
   if(keyPressed == UP){
-
+    movePlayerUp();
   }
   if(keyPressed == DOWN){
-
+    movePlayerDown();
   }
   if(keyPressed == LEFT){
-
+    movePlayerLeft();
   }
   if(keyPressed == RIGHT){
-
+    movePlayerRight();
   }
 }
 
