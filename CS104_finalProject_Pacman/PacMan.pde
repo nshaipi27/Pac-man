@@ -7,12 +7,22 @@ class Pacman extends Characters{
     pacmanImage = img;
   }
   
-  void checkGhostCollision(){
+  void checkGhostCollision(Ghosts ghosts){
     //think of logic
+    if((xPos + size) > ghosts.getCenterPosition() && (xPos < ghost.getCenterPosition())){
+      gameOver = true;
+      return true;
+    }
+      return false;
   }
   
   void checkPelletCollision(){
     //think of logic
+    if((xPos + size) > pellet.getCenterPosition() && (xPos < pellet.getCenterPosition())){
+      score++;
+      return true;
+    }
+      return false;
   }
   
   void update(){
