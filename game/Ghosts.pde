@@ -20,16 +20,19 @@ abstract class Ghosts extends Characters {
 
   void chaseBehavior() {
     //chase behavior
-    //frightened behavior
     targetX = pacman.getX();
     targetY = pacman.getY();
     moveTowardsTarget();
   }
 
+  void frightenedBehavior(){
+}
+
   void scatterBehavior() {
     //when the game starts
     moveToScatterTarget();
   }
+
   private void moveToScatterTarget(){
     if(x != targetX && y != targetY){
       //add
