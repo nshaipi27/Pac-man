@@ -20,15 +20,16 @@ abstract class Ghosts extends Characters {
 
   void chaseBehavior() {
     //chase behavior
-    targetX = pacman.getX();
-    targetY = pacman.getY();
-    moveTowardsTarget();
+    while(//ghost follows pacman){
+      targetX = pacman.getX();
+      targetY = pacman.getY();
+      //moveTowardsTarget();
+//while loop(while it follows pacman): follow pacman x direction and if it hits wall follow pacman y direction 
   }
 
   void frightenedBehavior(){
 }
-//know pac mans position
-//while loop(while it follows pacman): follow pacman x direction and if it hits wall follow pacman y direction 
+
   void scatterBehavior() {
     //when the game starts
     moveToScatterTarget();
