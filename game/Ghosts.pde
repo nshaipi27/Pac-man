@@ -4,8 +4,8 @@ abstract class Ghosts extends Characters {
   int size = 50;
   int moveSpeed = 30;
   GhostState state; 
-  int targetX = pacman.getX();
-  int targetY = pacman.getY();
+  int targetX;
+  int targetY;
   PImage ghostImage;
 
   Ghosts(int xPos, int yPos, int moveSpeed, int size) {
@@ -21,6 +21,9 @@ abstract class Ghosts extends Characters {
   void chaseBehavior() {
     //chase behavior
     //frightened behavior
+    targetX = pacman.getX();
+    targetY = pacman.getY();
+    moveTowardsTarget();
   }
 
   void scatterBehavior() {
