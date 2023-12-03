@@ -31,7 +31,11 @@ abstract class Ghosts extends Characters {
     moveToScatterTarget();
   }
   private void moveToScatterTarget(){
-    if(x != targetX && y != targetY;
+    if(x != targetX && y != targetY){
+      //add
+    }
+  }
+
   boolean checkCollision(Pacman pacman) {
     return false;
   }
