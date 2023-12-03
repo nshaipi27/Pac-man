@@ -27,7 +27,8 @@ abstract class Ghosts extends Characters {
 
   void frightenedBehavior(){
 }
-
+//know pac mans position
+//while loop(while it follows pacman): follow pacman x direction and if it hits wall follow pacman y direction 
   void scatterBehavior() {
     //when the game starts
     moveToScatterTarget();
