@@ -22,7 +22,7 @@ abstract class Ghosts extends Characters {
 }
   void chaseBehavior() {
     //chase behavior
-    while(//ghost follows pacman){
+    while(ghostFollowPacMan()){
       targetX = pacman.getX();
       targetY = pacman.getY();
       //moveTowardsTarget();
