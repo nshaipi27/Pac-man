@@ -17,7 +17,9 @@ abstract class Ghosts extends Characters {
   }
   void update() {
   }
-
+  boolean ghostFollowPacMan(){
+    if(
+}
   void chaseBehavior() {
     //chase behavior
     while(//ghost follows pacman){
