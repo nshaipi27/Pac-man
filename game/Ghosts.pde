@@ -38,6 +38,7 @@ abstract class Ghosts extends Characters {
   private void moveToScatterTarget(){
     if(x != targetX && y != targetY){
       //add
+      
     }
   }
 
