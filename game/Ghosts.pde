@@ -3,6 +3,9 @@ abstract class Ghosts extends Characters {
   int yPos;
   int size = 50;
   int moveSpeed = 30;
+  GhostState state; 
+  int targetX = get.pacManPosition();
+  int targetY
   PImage ghostImage;
 
   Ghosts(int xPos, int yPos, int moveSpeed, int size) {
