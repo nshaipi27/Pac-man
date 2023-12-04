@@ -3,6 +3,9 @@ class Maze {
   int xPos = 50;
   int yPos = 60;
   int size = 20;
+  boolean pelletCollision = false;
+
+  ArrayList <Pellets> pellets = new ArrayList <Pellets>();
 
   void initializeGrid1() {
     for (int i = 0; i < 28; i++) {
@@ -59,7 +62,6 @@ class Maze {
 
   void render1() {
     drawMaze();
-
     for (int i = 0; i < 28; i++) {
       for (int j = 0; j < 30; j++) {
         if (grid1[i][j] == 1) {
@@ -69,8 +71,6 @@ class Maze {
           fill(255);
         }
         saveGrid[i][j] = grid1[i][j];
-        // print (saveGrid[i][j]);
-
         square(xPos, yPos, size);
         xPos += size;
       }
@@ -82,25 +82,12 @@ class Maze {
 
 
   boolean pacmanCollidedWithWall(Pacman pacman) {
-    //this should be initially returning false? idk why true
-
-    // this part is wring. fix it
-    //if(movingRight == true){
-    //  pacmanCellX = (int) (pacman.getXPosWhenRight() - xPos) / size;
-    //} else if(movingLeft == true){
-    // pacmanCellX = (int) (pacman.getXPosWhenLeft() - xPos) / size;
-    //} else if(movingUp){
-    //pacmanCellY = (int) (pacman.getYPosWhenUp() - yPos) / size;
-    //} else if(movingDown){
-    //pacmanCellY= (int) (pacman.getYPosWhenDown() - yPos) / size;
-    //}
     pacmanCellX = (int) (pacman.getCenterX() - xPos) / size;
     pacmanCellY = (int) (pacman.getCenterY() - yPos) / size;
-    // print(pacmanCellX + " " + pacmanCellY + " ");
+
     for (int i = 0; i < 28; i++) {
       for (int j = 0; j < 30; j++) {
         if (grid1[pacmanCellY][pacmanCellX] == 1) {
-          // print(grid1[pacmanCellX][pacmanCellY]);
           return true;
         }
       }
@@ -109,10 +96,59 @@ class Maze {
   }
 
 
+  void initializePelletGrid() {
+    for (int i = 0; i < 28; i++) {
+      for (int j = 0; j < 30; j++) {
+        pelletGrid[i][j] = 0;
+      }
+    }
+  }
 
-  //this goes into level
-  void renderPac(Pacman pacman, Maze maze) {
-    pacman.render();
-    pacman.update(maze, pacman);
+
+  void placePellets() {
+    int x = 65;
+    int y = 75;
+    int size1 = 20;
+
+    for (int i = 0; i < 27; i++) {
+      for (int j = 0; j < 29; j++) {
+        if (grid1[i][j] == 0 && grid1[i][j+1] == 0 && grid1[i+1][j] == 0 && grid1[i+1][j+1] == 0) {
+          pellets.add(new Pellets(x, y, 10));
+          pelletGrid[i][j] = 4;
+        }
+        savePelletGrid[i][j] = pelletGrid[i][j];
+        x += size1;
+      }
+      x = 65;
+      y += size;
+    }
+    y = 75;
+  }
+
+  boolean checkSmallPelletCollision(Pacman pacman) {
+    pacmanCellXOnPellet = (int)(pacman.getCenterX() - 65) / 20;
+    pacmanCellYOnPellet = (int)(pacman.getCenterY() - 75) / 20;
+
+    if (savePelletGrid[pacmanCellXOnPellet][pacmanCellYOnPellet] == 4) {
+      print("true");
+      pelletCollision = true;
+    }
+    return pelletCollision;
+  }
+
+  void removePellet(Pacman pacman) {
+    for (int i = 0; i < pellets.size(); i ++) {
+      if (checkSmallPelletCollision(pacman)) {
+        //savePelletGrid[pacmanCellX][pacmanCellY] = 4;
+        pellets.remove(i);
+      }
+    }
+  }
+
+  void renderPellets() {
+
+    for (int i = 0; i < pellets.size(); i ++) {
+      pellets.get(i).render();
+    }
   }
 }
