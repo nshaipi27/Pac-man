@@ -1,11 +1,9 @@
-// SubClass of characters to control pacman's behavior
+// Sub-class of characters to control pacman's behavior
 class Pacman extends Characters {
   PImage pacmanImage; // whichever image we find of Pacman
   int pelletsConsumed = 0;
   boolean pelletCollision = false;
   boolean pelletEaten = false;
-
-
 
   Pacman(int xPos, int yPos, int speed, int size) {
     super(xPos, yPos, speed, size);
@@ -20,25 +18,17 @@ class Pacman extends Characters {
     return yPos;
   }
 
-  int getXPosWhenRight() {
-    return xPos + size/2;
+  int getPacSize() {
+    return size;
   }
 
-  int getYPosWhenDown() {
-    return yPos + size/2;
-  }
 
-  int getYPosWhenUp() {
-    return yPos - size/2;
+  void render() {
+    fill(color(255, 255, 0));
+    circle(xPos, yPos, size);
   }
-
-  int getXPosWhenLeft() {
-    return xPos - size/2;
-  }
-
 
   void update(Maze maze, Pacman pacman) {
-    print (maze.pacmanCollidedWithWall(pacman));
     if (!maze.pacmanCollidedWithWall(pacman)) {
       if (movingUp == true) {
         pacman.moveUp();
@@ -51,7 +41,7 @@ class Pacman extends Characters {
       }
     } else {
       if (movingRight == true) {
-        xPos -=  moveSpeed;
+        xPos -= moveSpeed;
       } else if (movingLeft == true) {
         xPos += moveSpeed;
       } else if (movingDown == true) {
@@ -62,25 +52,6 @@ class Pacman extends Characters {
     }
   }
 
-  void render() {
-    fill(color(255, 255, 0));
-    circle(xPos, yPos, size);
-  }
-
-
-  boolean checkWallCollision(Pacman pacman) {
-    pacmanCellX = (int) (pacman.getXPos() - xPos) / size;  // Assuming the initial xPos is 50
-    pacmanCellY = (int) (pacman.getYPos() - yPos) / size;  // Assuming the initial yPos is 60
-    // print(pacmanCellX + " " + pacmanCellY + " ");
-    for (int i = 0; i < 28; i++) {
-      for (int j = 0; j < 30; j++) {
-        if (grid1[pacmanCellY][pacmanCellX] == 1) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
 
 
   void moveUp() {
@@ -116,18 +87,12 @@ class Pacman extends Characters {
   }
 
   boolean checkGhostCollision() {
-    if (pacmanCellX == 3) {
+    if (grid1[pacmanCellX][pacmanCellY] == 3) {
       return true;
     }
     return false; //temporary return value
   }
 
-  boolean checkSmallPelletCollision() {
-    if (pacmanCellX == 4) {
-      return true;
-    }
-    return false; //temporary return value
-  }
 
   boolean checkBigPelletCollision() {
     if (pacmanCellY == 5) {
