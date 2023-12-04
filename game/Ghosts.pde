@@ -18,7 +18,9 @@ abstract class Ghosts extends Characters {
   void update() {
   }
   boolean ghostFollowPacMan(){
-    if(){
+    if(ghostFollowPacMan == TRUE){
+    }
+    else if(ghostFollowPacMan == FALSE){
     }
 }
   void chaseBehavior() {
@@ -31,6 +33,7 @@ abstract class Ghosts extends Characters {
   }
 
   void frightenedBehavior(){
+  
 }
 
   void scatterBehavior() {
