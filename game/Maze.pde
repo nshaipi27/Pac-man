@@ -71,7 +71,8 @@ class Maze {
     for (int i = 0; i < 28; i++) {
       for (int j = 0; j < 30; j++) {
         if (grid1[i][j] == 1) {
-          fill(0);
+          fill(0, 0, 260);
+          stroke(0, 0, 260);
           square(xPos, yPos, size);
         } else {
           fill(255);
