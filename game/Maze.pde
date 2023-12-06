@@ -71,8 +71,7 @@ class Maze {
     for (int i = 0; i < 28; i++) {
       for (int j = 0; j < 30; j++) {
         if (grid1[i][j] == 1) {
-          fill(0, 0, 260);
-          stroke(0, 0, 260);
+          fill(0);
           square(xPos, yPos, size);
         } else {
           fill(255);
@@ -101,7 +100,21 @@ class Maze {
     }
     return false;
   }
+  
+  boolean ghostCollidedWithWall(Ghosts ghost) {
+    ghostCellX = (int) (ghost.getX() - xPos) / size;
+    ghostCellY = (int) (ghost.getY() - yPos) / size;
 
+    for (int i = 0; i < 28; i++) {
+      for (int j = 0; j < 30; j++) {
+        if (grid1[ghostCellY][ghostCellX] == 1) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+  
 
   void initializePelletGrid() {
     for (int i = 0; i < 28; i++) {
@@ -136,12 +149,9 @@ class Maze {
     pacmanCellXOnPellet = (int)(pacman.getCenterX() - 65) / 20;
     pacmanCellYOnPellet = (int)(pacman.getCenterY() - 75) / 20;
 
-
-
     boolean collision = false;
     if ((pacman.getCenterX() > pellet.getCenterX() - 20 && pacman.getCenterX() < pellet.getCenterX() + 20 ) && (pacman.getCenterY() > pellet.getCenterY() - 15 && pacman.getCenterY() <  pellet.getCenterY() + 15)) {
       numOfCollisions++;
-      print(numOfCollisions);
       collision = true;
     }
     return collision;
@@ -156,7 +166,6 @@ class Maze {
   }
 
   void renderPellets() {
-
     for (int i = 0; i < pellets.size(); i ++) {
       pellets.get(i).render();
     }
