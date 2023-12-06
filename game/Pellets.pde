@@ -13,7 +13,6 @@ class Pellets {
     fill(150, 100, 0);
     stroke(150, 100, 0);
     square(xPos, yPos, size);
-    square(xPos, yPos, size);
   }
   
   int getCenterXOfPelletOnGrid(){
