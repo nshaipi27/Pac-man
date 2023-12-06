@@ -1,4 +1,3 @@
-// logic to more easily manipulate the levels and how they operate
 class Level {
   //instance variables
   int playerPositionY = 0;
@@ -13,11 +12,14 @@ class Level {
     maze.initializeGrid1();
     maze.drawMaze();
     maze.placePellets();
+    
   }
 
   void update(Maze maze, Pacman pacman) {
-    maze.checkSmallPelletCollision(pacman);
+    //maze.checkSmallPelletCollision(pacman);
     maze.removePellet(pacman);// when placed here, it removes every pellet. Fix this tomorrow in class
+    print(maze.score());
+    maze.score();  
   }
 
   void render(Maze maze, Pacman pacman) {
@@ -26,6 +28,9 @@ class Level {
     maze.renderPellets();
     pacman.render();
     pacman.update(maze, pacman);
-    
+    text(maze.score(), 50, 50);
   }
+  
+  
+  
 }
