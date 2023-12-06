@@ -28,7 +28,7 @@ void setup() {
 }
 
 void draw () {
-  background(155);
+  background(0);
   l1.update(maze, pacman);
   l1.render(maze, pacman);
 }
