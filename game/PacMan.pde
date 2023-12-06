@@ -11,10 +11,20 @@ class Pacman extends Characters {
     //img = loadImage("_");
   }
   int getCenterX() {
-    return xPos;
+    if(movingLeft)
+      return xPos-12;
+    else if(movingRight)
+      return xPos+12;
+     else
+      return xPos;
   }
 
   int getCenterY() {
+    if(movingUp){
+      return yPos - 12;
+    } else if(movingDown){
+      return yPos + 12;
+    }
     return yPos;
   }
 
@@ -39,17 +49,7 @@ class Pacman extends Characters {
       } else if (movingLeft == true) {
         pacman.moveLeft();
       }
-    } else {
-      if (movingRight == true) {
-        xPos -= moveSpeed;
-      } else if (movingLeft == true) {
-        xPos += moveSpeed;
-      } else if (movingDown == true) {
-        yPos -= moveSpeed;
-      } else if (movingUp == true) {
-        yPos += moveSpeed;
-      }
-    }
+    } 
   }
 
 
