@@ -1,0 +1,96 @@
+class Ghosts {
+  int xPos;
+  int yPos;
+  int moveSpeed;
+  int size;
+  int targetX;
+  int targetY;
+  PImage ghostImage;
+  Boolean pacmanAbove;
+  Boolean pacmanLeft;
+  Pacman pacman;
+
+
+
+  Ghosts(int xPos, int yPos, int moveSpeed, int size) {
+    this.xPos = xPos;
+    this.yPos = yPos;
+    this.moveSpeed = moveSpeed;
+    this.size = size;
+  }
+
+  int getX() {
+    return xPos;
+  }
+
+  int getY() {
+    return yPos;
+  }
+
+
+  void render() {
+    fill(0);
+    circle(xPos, yPos, size);
+  }
+
+  void update(Maze maze, Ghosts ghost) {
+    if (maze.ghostCollidedWithWall(ghost)) {
+      if (goLeft) {
+        goLeft = false;
+        goUp = true;
+      } else if (goUp) {
+        goUp = false;
+        goRight = true;
+      } else if (goRight) {
+        goRight = false;
+        goDown = true;
+      } else if (goDown) {
+        goDown = false;
+        goLeft = true;
+      }
+    } else {
+      if (goLeft) {
+        moveGhostLeft();
+      } else if (goRight) {
+        moveGhostRight();
+      } else if (goUp) {
+        moveGhostUp();
+      } else if (goDown) {
+        moveGhostDown();
+      }
+    }
+  }
+
+
+  void moveGhostUp() {
+    goUp = true;
+    goDown = false;
+    goLeft = false;
+    goRight = false;
+    yPos -= moveSpeed;
+  }
+
+  void moveGhostDown() {
+    goUp = false;
+    goDown = true;
+    goLeft = false;
+    goRight = false;
+    yPos += moveSpeed;
+  }
+
+  void moveGhostLeft() {
+    goUp = false;
+    goDown = false;
+    goRight = false;
+    goLeft = true;
+    xPos -= moveSpeed;
+  }
+
+  void moveGhostRight() {
+    goUp = false;
+    goDown = false;
+    goLeft = false;
+    goRight = true;
+    xPos += moveSpeed;
+  }
+}
