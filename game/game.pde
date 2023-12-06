@@ -2,6 +2,8 @@ int [][] grid1 = new int [28][30];
 int [][] saveGrid = new int [28][30];
 int pacmanCellX;
 int pacmanCellY;
+int ghostCellX;
+int ghostCellY;
 
 int [][] pelletGrid = new int [27][29];
 int [][] savePelletGrid = new int [27][29];
@@ -13,9 +15,14 @@ boolean movingLeft = false;
 boolean movingUp = false;
 boolean movingDown = false;
 
+boolean goLeft = true;
+boolean goRight = false;
+boolean goUp = false;
+boolean goDown = false;
+
 Pacman pacman;
 Maze maze;
-
+Ghosts ghost;
 
 Level l1;
 
@@ -25,12 +32,13 @@ void setup() {
   maze = new Maze();
   l1 = new Level(2, maze);
   print(grid1[0][0]);
+  ghost = new Ghosts (600, 220, 2, 25);
 }
 
 void draw () {
-  background(0);
+  background(155);
   l1.update(maze, pacman);
-  l1.render(maze, pacman);
+  l1.render(maze, pacman, ghost);
 }
 
 void keyPressed() {
