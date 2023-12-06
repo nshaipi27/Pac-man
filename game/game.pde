@@ -7,6 +7,8 @@ int [][] pelletGrid = new int [27][29];
 int [][] savePelletGrid = new int [27][29];
 int pacmanCellXOnPellet;
 int pacmanCellYOnPellet;
+int score = 0;
+int highScore = 0;
 
 boolean movingRight = false;
 boolean movingLeft = false;
@@ -31,7 +33,10 @@ void draw () {
   background(155);
   l1.update(maze, pacman);
   l1.render(maze, pacman);
-
+  textSize(40);
+  fill(0);
+  text("Score:" + " " + score, 40, 50);
+  text("High Score:" + " " + highScore, 420, 50);
 }
 
 void keyPressed() {
