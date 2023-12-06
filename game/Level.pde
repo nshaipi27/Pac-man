@@ -26,9 +26,6 @@ class Level {
     maze.renderPellets();
     pacman.render();
     pacman.update(maze, pacman);
-    textSize(40);
-    fill(0);
-    text("Score:" + " " + score, 40, 50);
-    text("High Score:" + " " + highScore, 420, 50);
+    
   }
 }
