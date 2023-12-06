@@ -36,6 +36,10 @@ class Pacman extends Characters {
   void render() {
     fill(color(255, 255, 0));
     circle(xPos, yPos, size);
+    fill(0);
+    stroke(0);
+    triangle(xPos, yPos, xPos + (size/2.75), yPos + (size/2.75), xPos + (size/2.75), yPos - (size/2.75));
+    ellipse(xPos + size/2.75, yPos, size/3.2, size/1.5);
   }
 
   void update(Maze maze, Pacman pacman) {
