@@ -1,9 +1,9 @@
-
 class Maze {
   int xPos = 50;
   int yPos = 60;
   int size = 20;
   boolean pelletCollision = false;
+  int numOfCollisions = 0;
 
   ArrayList <Pellets> pellets = new ArrayList <Pellets>();
 
@@ -52,6 +52,12 @@ class Maze {
           grid1[i][j] = 1;
         } else if (i == 23 && (j > 12 && j < 17)) {
           grid1[i][j] = 1;
+        } else if ((i >= 4 && i <= 6) && (j == 4 || j == 25)) {
+          grid1[i][j] = 2;
+        } else if ( i ==3 && (j == 8 || j == 11 || j == 18 || j ==21)) {
+          grid1[i][j] = 2;
+        } else if (((j > 9 && j < 12) || (j >17 && j < 20) ) && (i == 6 || i == 7)) {
+          grid1[i][j] = 2;
         } else {
           fill(255);
           grid1[i][j] = 0;
@@ -71,7 +77,7 @@ class Maze {
           fill(255);
         }
         saveGrid[i][j] = grid1[i][j];
-        square(xPos, yPos, size);
+        //square(xPos, yPos, size);
         xPos += size;
       }
       xPos = 50;
@@ -112,8 +118,8 @@ class Maze {
 
     for (int i = 0; i < 27; i++) {
       for (int j = 0; j < 29; j++) {
-        if (grid1[i][j] == 0 && grid1[i][j+1] == 0 && grid1[i+1][j] == 0 && grid1[i+1][j+1] == 0) {
-          pellets.add(new Pellets(x, y, 10));
+        if (grid1[i][j] == 0 && grid1[i][j+1] == 0 && grid1[i+1][j] == 0 && grid1[i+1][j+1] == 0 && grid1[i][j] !=2 ) {
+          pellets.add(new Pellets(x, y, 7));
           pelletGrid[i][j] = 4;
         }
         savePelletGrid[i][j] = pelletGrid[i][j];
@@ -125,21 +131,24 @@ class Maze {
     y = 75;
   }
 
-  boolean checkSmallPelletCollision(Pacman pacman) {
+  boolean checkSmallPelletCollision(Pacman pacman, Pellets pellet) {
     pacmanCellXOnPellet = (int)(pacman.getCenterX() - 65) / 20;
     pacmanCellYOnPellet = (int)(pacman.getCenterY() - 75) / 20;
 
-    if (savePelletGrid[pacmanCellXOnPellet][pacmanCellYOnPellet] == 4) {
-      print("true");
-      pelletCollision = true;
+
+
+    boolean collision = false;
+    if ((pacman.getCenterX() > pellet.getCenterX() - 20 && pacman.getCenterX() < pellet.getCenterX() + 20 ) && (pacman.getCenterY() > pellet.getCenterY() - 15 && pacman.getCenterY() <  pellet.getCenterY() + 15)) {
+      numOfCollisions++;
+      print(numOfCollisions);
+      collision = true;
     }
-    return pelletCollision;
+    return collision;
   }
 
   void removePellet(Pacman pacman) {
     for (int i = 0; i < pellets.size(); i ++) {
-      if (checkSmallPelletCollision(pacman)) {
-        //savePelletGrid[pacmanCellX][pacmanCellY] = 4;
+      if (checkSmallPelletCollision(pacman, pellets.get(i))) {
         pellets.remove(i);
       }
     }
@@ -150,5 +159,9 @@ class Maze {
     for (int i = 0; i < pellets.size(); i ++) {
       pellets.get(i).render();
     }
+  }
+  
+  int score (){
+    return numOfCollisions * 100;
   }
 }
