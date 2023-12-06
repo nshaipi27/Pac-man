@@ -10,7 +10,9 @@ class Pellets {
   }
 
   void render() {
-    fill(0);
+    fill(150, 100, 0);
+    stroke(150, 100, 0);
+    square(xPos, yPos, size);
     square(xPos, yPos, size);
   }
   
