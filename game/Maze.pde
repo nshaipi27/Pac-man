@@ -71,7 +71,8 @@ class Maze {
     for (int i = 0; i < 28; i++) {
       for (int j = 0; j < 30; j++) {
         if (grid1[i][j] == 1) {
-          fill(0);
+          fill(color(0, 0, 260));
+          stroke(0, 0, 260);
           square(xPos, yPos, size);
         } else {
           fill(255);
@@ -100,7 +101,7 @@ class Maze {
     }
     return false;
   }
-  
+
   boolean ghostCollidedWithWall(Ghosts ghost) {
     ghostCellX = (int) (ghost.getX() - xPos) / size;
     ghostCellY = (int) (ghost.getY() - yPos) / size;
@@ -114,7 +115,7 @@ class Maze {
     }
     return false;
   }
-  
+
 
   void initializePelletGrid() {
     for (int i = 0; i < 28; i++) {
@@ -170,8 +171,8 @@ class Maze {
       pellets.get(i).render();
     }
   }
-  
-  int score (){
+
+  int score () {
     return numOfCollisions * 100;
   }
 }
