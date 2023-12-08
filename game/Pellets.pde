@@ -10,9 +10,16 @@ class Pellets {
   }
 
   void render() {
-    fill(150, 100, 0);
-    stroke(150, 100, 0);
+    fill(150,100,0);
+    stroke(150,100,0);
     square(xPos, yPos, size);
+  }
+  
+  int getCenterX(){
+    return xPos;
+  }
+  int getCenterY(){
+    return yPos;
   }
   
   int getCenterXOfPelletOnGrid(){
