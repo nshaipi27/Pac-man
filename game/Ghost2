@@ -10,115 +10,109 @@ class Ghosts {
   Boolean pacmanAbove;
   Boolean pacmanLeft;
   Pacman pacman;
-
-
+  PImage pinky;
 
   Ghosts(int xPos, int yPos, int moveSpeed, int size) {
     this.xPos = xPos;
     this.yPos = yPos;
     this.moveSpeed = moveSpeed;
     this.size = size;
+    pinky = loadImage ("images/pinky3.png");
   }
 
   int getX() {
+    if (goLeft) {
+      return xPos - 12;
+    } else if (goRight) {
+      return xPos + 12;
+    }
     return xPos;
   }
 
   int getY() {
+    if (goUp) {
+      return yPos - 12;
+    } else if (goDown) {
+      return yPos + 12;
+    }
     return yPos;
   }
+
 
 
   void render() {
     fill(255, 182, 193);
     stroke(255, 182, 193);
-    circle(xPos, yPos, size);
+    image(pinky, xPos, yPos);
   }
 
   void update(Maze maze, Ghosts ghost) {
-    //if (maze.ghostCollidedWithWall(ghost)) {
-    //  if (goLeft) {
-    //    goLeft = false;
-    //    int direction = (int) random(0, 3);
-    //    if (direction == 1) {
-    //      goDown = true;
-    //      moveGhostDown();
-    //    } else if ( direction == 2) {
-    //      goRight = true;
-    //      moveGhostRight();
-    //    } else if (direction == 3) {
-    //      goUp = true;
-    //      moveGhostUp();
-    //    }
-    //  }
-
-    //  if (goUp) {
-    //    goUp = false;
-    //    int direction = (int) random(0, 3);
-    //    if (direction == 1) {
-    //      goDown = true;
-    //      moveGhostDown();
-    //    } else if ( direction == 2) {
-    //      goRight = true;
-    //      moveGhostRight();
-    //    } else if (direction == 3) {
-    //      goLeft = true;
-    //      moveGhostLeft();
-    //    }
-    //  }
-
-    //  if (goDown) {
-    //    goDown = false;
-    //    int direction = (int) random(0, 3);
-    //    if (direction == 1) {
-    //      goUp = true;
-    //      moveGhostUp();
-    //    } else if ( direction == 2) {
-    //      goRight = true;
-    //      moveGhostRight();
-    //    } else if (direction == 3) {
-    //      goLeft = true;
-    //      moveGhostLeft();
-    //    }
-
-    //    if (goRight) {
-    //      goRight = false;
-    //      if (direction == 1) {
-    //        goUp = true;
-    //        moveGhostUp();
-    //      }
-    //      if ( direction == 2) {
-    //        goLeft = true;
-    //        moveGhostLeft();
-    //      }
-    //      if (direction == 3) {
-    //        goDown = true;
-    //        moveGhostDown();
-    //      }
-    //    }
-    //  }
     if (maze.ghostCollidedWithWall(ghost)) {
+
       if (goLeft) {
         goLeft = false;
-        goUp = true;
-        xPos += 5;
-        moveGhostUp();
+        int direction = (int) random(1, 3);
+        if (direction == 1) {
+          goDown = true;
+          xPos +=5;
+          moveGhostDown();
+        } else if ( direction == 2) {
+          goRight = true;
+          yPos += 5;
+          moveGhostRight();
+        } else if (direction == 3) {
+          goUp = true;
+          xPos += 5;
+          moveGhostUp();
+        }
       } else if (goUp) {
         goUp = false;
-        yPos += 5;
-        goRight = true;
-        moveGhostRight();
-      } else if (goRight) {
-        goRight = false;
-        goDown = true;
-        xPos -=5; 
-        moveGhostDown();
-       
+        int direction = (int) random(1, 3);
+        if (direction == 1) {
+          goDown = true;
+          yPos +=5;
+          moveGhostDown();
+        } else if ( direction == 2) {
+          goRight = true;
+          yPos += 5;
+          moveGhostRight();
+        } else if (direction == 3) {
+          goLeft = true;
+          moveGhostLeft();
+        }
       } else if (goDown) {
         goDown = false;
-        goLeft = true;
-        yPos -= 5;
-        moveGhostLeft();
+        int direction = (int) random(1, 3);
+        if (direction == 1) {
+          goUp = true;
+          yPos -= 5;
+          moveGhostUp();
+        } else if ( direction == 2) {
+          goRight = true;
+          yPos -= 5;
+          moveGhostRight();
+        } else if (direction == 3) {
+          goLeft = true;
+          yPos -= 5;
+          moveGhostLeft();
+        }
+      } else if (goRight) {
+        goRight = false;
+        int direction = (int) random(1, 3);
+        if (direction == 1) {
+          goUp = true;
+          xPos -= 5;
+          moveGhostUp();
+        }
+        if (direction == 2) {
+          goLeft = true;
+          moveGhostLeft();
+        }
+        if (direction == 3) {
+          goDown = true;
+          xPos -= 5;
+          moveGhostDown();
+        }
       }
     } else {
       if (goLeft) {
@@ -164,4 +158,11 @@ class Ghosts {
     goRight = true;
     xPos += moveSpeed;
   }
-}
+  
+  boolean checkPacCollision(Pacman pacman){
+    if(pacman.getCenterX() == (xPos + 20) && pacman.getCenterY() == (yPos + 20)){
+      return true;
+    }
+    return false; 
+  }
+}  
