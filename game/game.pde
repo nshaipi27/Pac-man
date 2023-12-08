@@ -20,9 +20,14 @@ boolean goRight = false;
 boolean goUp = false;
 boolean goDown = false;
 
+int state = 0; 
+
+//PFont font = createFont("tapper/tapper.ttf", 15);
+
 Pacman pacman;
 Maze maze;
-Ghosts ghost;
+Ghosts ghost1, ghost2, ghost3, ghost4;
+
 
 Level l1;
 
@@ -32,13 +37,13 @@ void setup() {
   maze = new Maze();
   l1 = new Level(2, maze);
   print(grid1[0][0]);
-  ghost = new Ghosts (600, 220, 2, 25);
+  ghost1 = new Ghosts (600, 220, 2, 30);
 }
 
 void draw () {
-  background(155);
+  background(0);
   l1.update(maze, pacman);
-  l1.render(maze, pacman, ghost);
+  l1.render(maze, pacman, ghost1);
 }
 
 void keyPressed() {
@@ -64,5 +69,9 @@ void keyPressed() {
       movingDown = false;
       movingUp = false;
     }
+  }
+  
+  if(state == 0){
+    
   }
 }
