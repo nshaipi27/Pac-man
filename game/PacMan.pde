@@ -1,28 +1,36 @@
 // Sub-class of characters to control pacman's behavior
-class Pacman extends Characters {
-  PImage pacmanImage; // whichever image we find of Pacman
+class Pacman {
+  int xPos;
+  int yPos;
+  int moveSpeed;
+  int size;
+  PImage pacmanImage;
   int pelletsConsumed = 0;
   boolean pelletCollision = false;
   boolean pelletEaten = false;
+  PImage pacman;
 
-  Pacman(int xPos, int yPos, int speed, int size) {
-    super(xPos, yPos, speed, size);
-    //load PacMan Image
-    //img = loadImage("_");
+  Pacman(int xPos, int yPos, int moveSpeed, int size) {
+    this.xPos = xPos;
+    this.yPos = yPos;
+    this.moveSpeed = moveSpeed;
+    this.size = size;
+    pacman = loadImage("images/pacmanRight.png");
   }
+
   int getCenterX() {
-    if(movingLeft)
+    if (movingLeft)
       return xPos-12;
-    else if(movingRight)
+    else if (movingRight)
       return xPos+12;
-     else
+    else
       return xPos;
   }
 
   int getCenterY() {
-    if(movingUp){
+    if (movingUp) {
       return yPos - 12;
-    } else if(movingDown){
+    } else if (movingDown) {
       return yPos + 12;
     }
     return yPos;
@@ -35,11 +43,8 @@ class Pacman extends Characters {
 
   void render() {
     fill(color(255, 255, 0));
+    //image(pacman,xPos, yPos);
     circle(xPos, yPos, size);
-    fill(0);
-    stroke(0);
-    triangle(xPos, yPos, xPos + (size/2.75), yPos + (size/2.75), xPos + (size/2.75), yPos - (size/2.75));
-    ellipse(xPos + size/2.75, yPos, size/3.2, size/1.5);
   }
 
   void update(Maze maze, Pacman pacman) {
@@ -53,10 +58,8 @@ class Pacman extends Characters {
       } else if (movingLeft == true) {
         pacman.moveLeft();
       }
-    } 
+    }
   }
-
-
 
   void moveUp() {
     movingUp = true;
@@ -89,19 +92,5 @@ class Pacman extends Characters {
     movingRight = true;
     xPos += moveSpeed;
   }
-
-  boolean checkGhostCollision() {
-    if (grid1[pacmanCellX][pacmanCellY] == 3) {
-      return true;
-    }
-    return false; //temporary return value
-  }
-
-
-  boolean checkBigPelletCollision() {
-    if (pacmanCellY == 5) {
-      return true;
-    }
-    return false;
-  }
 }
+
